@@ -107,10 +107,16 @@ var CommentsView = Backbone.View.extend({
     ].join('');
 
     this.$el.html(html);
-    /* Render each model in the collection as a list item (<li>).
+    /* Render each model's message in the collection as a list item (<li>).
      * Remember, we have the underscore functions: */
-    this.$el.find('ul').append(this.collection.map(function(comment) {
+    this.$el.find('ul').append(this.collection.map(function(model) {
+      let msg = model.attributes.message;
+
+      return '<li>' + msg + '</li>';
       // YOUR CODE HERE
+      // var newVotes = comment.get('votes') * 2;
+      // comment.set({votes: newVotes}); 
+      
     }));
 
     return this.$el;
@@ -133,8 +139,10 @@ var comments = new Comments(commentList);
 // Associate a view to the collection:
 var commentsView = new CommentsView({ collection: comments });
 
+console.log(commentsView);
+
 // Append it to the page (uncomment this when you are ready):
-// $('body').append(commentsView.render());
+$('body').append(commentsView.render());
     </script>
   </body>
 </html>
